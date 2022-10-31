@@ -22,7 +22,9 @@ const Login = () => {
 
           <TextInput type="password" placeholder="Enter Password" icon="lock" />
 
-          <Button text="Submit now" />
+          <Button>
+            <span>Submit Now</span>
+          </Button>
 
           <Footer>
             Don't have an account? <a href="signup.html">Signup</a> instead.
