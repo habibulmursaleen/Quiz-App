@@ -1,8 +1,11 @@
 import React from "react";
 import "../styles/App.css";
 import Layout from "./Layout";
-import Quiz from "./pages/Quiz";
+// import Quiz from "./pages/Quiz";
 // import Home from "./pages/Home";
+// import Login from "./pages/Login";
+// import SignUp from "./pages/SignUp";
+import Results from "./pages/Results";
 
 function App() {
   return (
@@ -12,7 +15,8 @@ function App() {
         {/* <Home /> */}
         {/* <SignUp /> */}
         {/* <Login /> */}
-        <Quiz />
+        {/* <Quiz /> */}
+        <Results />
       </Layout>
     </div>
   );
