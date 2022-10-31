@@ -1,8 +1,8 @@
 import React from "react";
 import "../styles/App.css";
 import Layout from "./Layout";
+import Quiz from "./pages/Quiz";
 // import Home from "./pages/Home";
-import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -10,7 +10,9 @@ function App() {
       <Layout>
         {/* children */}
         {/* <Home /> */}
-        <SignUp />
+        {/* <SignUp /> */}
+        {/* <Login /> */}
+        <Quiz />
       </Layout>
     </div>
   );
