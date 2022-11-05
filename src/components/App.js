@@ -8,6 +8,8 @@ import SignUp from "./layout/pages/access/SignUp";
 import Home from "./layout/pages/home/Home";
 import Quiz from "./layout/pages/quiz/Quiz";
 import Results from "./layout/pages/results/Results";
+import PrivateRoute from "./routes/PrivateRoute";
+import PublicRoute from "./routes/PublicRoute";
 
 function App() {
   return (
@@ -17,10 +19,10 @@ function App() {
           {/* children */}
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/signUp" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/quiz" element={<Quiz />} />
-            <Route path="/result" element={<Results />} />
+            <PublicRoute path="/signUp" element={<SignUp />} />
+            <PublicRoute path="/login" element={<Login />} />
+            <PrivateRoute path="/quiz" element={<Quiz />} />
+            <PrivateRoute path="/result" element={<Results />} />
           </Routes>
         </Layout>
       </AuthProvider>
