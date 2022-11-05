@@ -25,6 +25,12 @@ const Videos = () => {
       <Link to="/quiz">
         <Video />
       </Link>
+      <Link to="/quiz">
+        <Video />
+      </Link>
+      <Link to="/quiz">
+        <Video />
+      </Link>
     </div>
   );
 };
