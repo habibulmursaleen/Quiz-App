@@ -1,7 +1,7 @@
 import React from "react";
-import Answers from "./Answers";
+import Answers from "../../quiz/Answers";
 
-import classes from "../styles/Question.module.css";
+import classes from "../../../../../styles/Question.module.css";
 
 const Question = () => {
   return (

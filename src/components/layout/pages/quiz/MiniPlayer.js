@@ -1,7 +1,7 @@
 import React from "react";
 
-import image from "../assets/images/3.jpg";
-import classes from "../styles/MiniPlayer.module.css";
+import image from "../../../../assets/images/3.jpg";
+import classes from "../../../../styles/MiniPlayer.module.css";
 
 const MiniPlayer = () => {
   return (

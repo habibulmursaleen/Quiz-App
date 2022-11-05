@@ -1,6 +1,6 @@
 import React from "react";
-import Analysis from "../Analysis";
-import Summary from "../Summary";
+import Analysis from "./analysis/Analysis";
+import Summary from "./Summary";
 
 const Results = () => {
   return (

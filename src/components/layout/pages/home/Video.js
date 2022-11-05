@@ -1,7 +1,7 @@
 import React from "react";
 
-import image from "../assets/images/quizz.jpg.webp";
-import classes from "../styles/Video.module.css";
+import image from "../../../../assets/images/quizz.jpg.webp";
+import classes from "../../../../styles/Video.module.css";
 
 const Video = () => {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "./navbar/Nav";
 
-import classes from "../styles/Layout.module.css";
+import classes from "../../styles/Layout.module.css";
 
 const Layout = ({ children }) => {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 
-import image from "../assets/images/success.png";
-import classes from "../styles/Summary.module.css";
+import image from "../../../../assets/images/success.png";
+import classes from "../../../../styles/Summary.module.css";
 
 const Summary = () => {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 
-import SignUpImage from "../assets/images/signup.svg";
-import classes from "../styles/Illustration.module.css";
+import SignUpImage from "../../../../assets/images/signup.svg";
+import classes from "../../../../styles/Illustration.module.css";
 
 const Illustration = () => {
   return (
