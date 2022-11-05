@@ -1,11 +1,12 @@
 import React from "react";
-import Button from "../forms/Button";
-import Footer from "../forms/Footer";
-import Forms from "../forms/Forms";
-import TextInput from "../forms/TextInput";
-import Illustration from "../Illastration";
+import { Link } from "react-router-dom";
+import Button from "../../../forms/Button";
+import Footer from "../../../forms/Footer";
+import Forms from "../../../forms/Forms";
+import TextInput from "../../../forms/TextInput";
+import Illustration from "./Illastration";
 
-import classes from "../../styles/Signup.module.css";
+import classes from "../../../../styles/Signup.module.css";
 
 const Login = () => {
   return (
@@ -27,7 +28,7 @@ const Login = () => {
           </Button>
 
           <Footer>
-            Don't have an account? <a href="signup.html">Signup</a> instead.
+            Don't have an account? <Link to="/signup">Signup</Link> instead.
           </Footer>
         </Forms>
       </div>

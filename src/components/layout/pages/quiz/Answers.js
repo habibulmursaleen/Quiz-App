@@ -1,7 +1,7 @@
 import React from "react";
-import CheckBox from "./forms/CheckBox";
+import CheckBox from "../../../forms/CheckBox";
 
-import classes from "../styles/Answers.module.css";
+import classes from "../../../../styles/Answers.module.css";
 
 const Answers = () => {
   return (
