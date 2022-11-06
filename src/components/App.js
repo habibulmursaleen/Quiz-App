@@ -19,10 +19,38 @@ function App() {
           {/* children */}
           <Routes>
             <Route path="/" element={<Home />} />
-            <PublicRoute path="/signUp" element={<SignUp />} />
-            <PublicRoute path="/login" element={<Login />} />
-            <PrivateRoute path="/quiz" element={<Quiz />} />
-            <PrivateRoute path="/result" element={<Results />} />
+            <Route
+              path="/signUp"
+              element={
+                <PublicRoute>
+                  <SignUp />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/quiz"
+              element={
+                <PrivateRoute>
+                  <Quiz />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/result"
+              element={
+                <PrivateRoute>
+                  <Results />
+                </PrivateRoute>
+              }
+            />
           </Routes>
         </Layout>
       </AuthProvider>

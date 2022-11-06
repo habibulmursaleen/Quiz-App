@@ -1,15 +1,11 @@
 import React from "react";
-import { Navigate, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
-const PublicRoute = ({ component: Component, ...rest }) => {
+const PublicRoute = ({ children }) => {
   const { currentUser } = useAuth();
 
-  return !currentUser ? (
-    <Route {...rest}> {(props) => <Component {...props} />} </Route>
-  ) : (
-    <Navigate to="/" />
-  );
+  return !currentUser ? children : <Navigate to="/" />;
 };
 
 export default PublicRoute;
