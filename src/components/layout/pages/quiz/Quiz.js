@@ -19,7 +19,7 @@ const reducer = (state, action) => {
     //copy >> looping through questions >> options >> checking false
     //action.value is the questions we get from firebase
     case "questions":
-      action.value.keys().forEach((question) => {
+      action.value.forEach((question) => {
         question.options.forEach((option) => {
           option.checked = false;
         });
