@@ -1,17 +1,19 @@
 import React from "react";
 
-import image from "../../../../assets/images/quizz.jpg.webp";
 import classes from "../../../../styles/Video.module.css";
 
-const Video = () => {
+const Video = ({ title, id, noq }) => {
   return (
     <div>
       <div className={classes.video}>
-        <img src={image} alt="Video Title" />
-        <p>React Hooks - useReducer </p>
+        <img
+          src={`http://img.youtube.com/vi/${id}/maxresdefault.jpg`}
+          alt={title}
+        />
+        <p>{title} </p>
         <div className={classes.qmeta}>
-          <p>10 Questions</p>
-          <p>Score : Not taken yet</p>
+          <p>{noq} Questions</p>
+          <p>Total points : {noq * 5}</p>
         </div>
       </div>
     </div>

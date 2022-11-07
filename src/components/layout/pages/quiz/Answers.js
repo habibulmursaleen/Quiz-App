@@ -3,17 +3,20 @@ import CheckBox from "../../../forms/CheckBox";
 
 import classes from "../../../../styles/Answers.module.css";
 
-const Answers = () => {
+const Answers = ({ options = [], handleChange }) => {
   return (
     <div className={classes.answers}>
-      <CheckBox type="checkbox" className={classes.answer} text="Test Answer" />
-      <CheckBox type="checkbox" className={classes.answer} text="Test Answer" />
-      <CheckBox type="checkbox" className={classes.answer} text="Test Answer" />
-      <CheckBox type="checkbox" className={classes.answer} text="Test Answer" />
-      <CheckBox type="checkbox" className={classes.answer} text="Test Answer" />
-      <CheckBox type="checkbox" className={classes.answer} text="Test Answer" />
-      <CheckBox type="checkbox" className={classes.answer} text="Test Answer" />
-      <CheckBox type="checkbox" className={classes.answer} text="Test Answer" />
+      {options.map((option, index) => (
+        <CheckBox
+          type="checkbox"
+          className={classes.answer}
+          text={option.title}
+          value={index}
+          checked={options.checked}
+          key={index}
+          onChange={(event) => handleChange(event, index)}
+        />
+      ))}
     </div>
   );
 };
