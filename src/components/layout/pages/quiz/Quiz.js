@@ -1,6 +1,8 @@
+import { getDatabase, ref, set } from "firebase/database";
 import _ from "lodash";
 import React, { useEffect, useReducer, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../../../../context/AuthContext";
 import UseQuestionsList from "../../../../hooks/useQuestionsList";
 import Answers from "./Answers";
 import MiniPlayer from "./MiniPlayer";
@@ -19,7 +21,7 @@ const reducer = (state, action) => {
     //copy >> looping through questions >> options >> checking false
     //action.value is the questions we get from firebase
     case "questions":
-      action.value.keys().forEach((question) => {
+      action.value.forEach((question) => {
         question.options.forEach((option) => {
           option.checked = false;
         });
@@ -45,9 +47,11 @@ const Quiz = () => {
   //hooks at the top
   const { id } = useParams(); //using hooks >> getting youtubeID in id.
   const { loading, error, questions } = UseQuestionsList(id); //from costom hooks
-  // eslint-disable-next-line
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [qna, dispatch] = useReducer(reducer, initialState);
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
   //to do it once only
   //questions will not change after loading from firebase
   //after loading useEffect will call dispatch
@@ -55,7 +59,7 @@ const Quiz = () => {
   useEffect(() => {
     dispatch({
       type: "questions", //from reducer
-      value: "questions", //from firebase using custom Hook
+      value: questions, //from firebase using custom Hook
     });
   }, [questions]);
 
@@ -63,8 +67,45 @@ const Quiz = () => {
     dispatch({
       type: "answer", //from reducer
       questionID: currentQuestion,
-      optionIndex: "index",
+      optionIndex: index,
       value: event.target.checked,
+    });
+  };
+
+  //handles next questions when button pressed
+  const handleNextQuestion = () => {
+    if (currentQuestion <= questions.length) {
+      setCurrentQuestion((prevCurrentQuestion) => prevCurrentQuestion + 1);
+    }
+  };
+
+  //handles previous questions when button pressed
+  const handlePrevQuestion = () => {
+    if (currentQuestion >= 1 && currentQuestion <= questions.length) {
+      setCurrentQuestion((prevCurrentQuestion) => prevCurrentQuestion - 1);
+    }
+  };
+
+  //calculate % of progress
+  const percentage =
+    questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
+
+  //submitQuiz. We request in firebase so thats async funtion
+  //we save the results data in Results node against current userID. which is qna
+  const submitQuiz = async () => {
+    const { uid } = currentUser; //uid from firebase
+
+    const db = getDatabase(); //creating db ref
+    const resultRef = ref(db, `result/${uid}`);
+    await set(resultRef, {
+      [id]: qna,
+    });
+
+    navigate({
+      pathname: `/result/${id}`,
+      state: {
+        qna,
+      },
     });
   };
 
@@ -79,8 +120,14 @@ const Quiz = () => {
           <Answers
             options={qna[currentQuestion].options}
             handleChange={handleAnswerChange}
+            input
           />
-          <ProgressBar />
+          <ProgressBar
+            nextQuestion={handleNextQuestion}
+            prevQuestion={handlePrevQuestion}
+            progress={percentage}
+            submit={submitQuiz}
+          />
           <MiniPlayer />
         </>
       )}
