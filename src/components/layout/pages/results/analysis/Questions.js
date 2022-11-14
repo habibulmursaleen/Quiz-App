@@ -3,16 +3,16 @@ import Answers from "../../quiz/Answers";
 
 import classes from "../../../../../styles/Question.module.css";
 
-const Question = () => {
-  return (
-    <div className={classes.question}>
+const Question = ({ answers = [] }) => {
+  return answers.map((answer, index) => (
+    <div className={classes.question} key={index}>
       <div className={classes.qtitle}>
         <span className="material-icons-outlined"> help_outline </span>
-        Here goes the question on ReactJS?
+        {answer.title}
       </div>
-      <Answers />
+      <Answers input={false} options={answer.options} />
     </div>
-  );
+  ));
 };
 
 export default Question;
