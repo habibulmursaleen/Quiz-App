@@ -10,7 +10,6 @@ const Answers = ({ options = [], handleChange, input }) => {
         <Fragment key={index}>
           {input ? (
             <CheckBox
-              type="checkbox"
               className={classes.answer}
               text={option.title}
               value={index}
@@ -20,17 +19,16 @@ const Answers = ({ options = [], handleChange, input }) => {
             />
           ) : (
             <CheckBox
+              key={index}
               className={`${classes.answer} ${
                 option.correct
                   ? classes.correct
                   : option.checked
                   ? classes.wrong
                   : null
-              }`}
+              } `}
               text={option.title}
-              type="checkbox"
               defaultChecked={option.checked} //readonly// uncontrolled
-              key={index}
               disabled
             />
           )}

@@ -1,19 +1,20 @@
 import _ from "lodash";
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import useAnswers from "../../../../hooks/useAnswers";
 import Analysis from "./analysis/Analysis";
 import Summary from "./Summary";
 
 const Results = () => {
   const { id } = useParams();
-  const { qna } = useNavigate(); //getting qna from react router dom location
+  const location = useLocation(); //getting qna from react router dom location
+  const qna = location?.state?.qna;
   const { loading, error, answers } = useAnswers(id);
 
   //"qna" has only checked items, answers has the correct ones. now we need to check
-  const calculate = () => {
+  function calculate() {
     let score = 0;
-    console.log("xx");
+    console.log(score);
     answers.forEach((question, index1) => {
       //making arrays for checked ones and correct ones
       let correctIndexes = [],
@@ -24,7 +25,7 @@ const Results = () => {
         if (option.correct) {
           correctIndexes.push(index2);
         }
-        if (qna[index1].options[index2].checked) {
+        if (qna[index1]?.options[index2]?.checked) {
           checkedIndexes.push(index2);
           option.checked = true; //will need in result analysis
         }
@@ -37,7 +38,9 @@ const Results = () => {
     });
     console.log(score);
     return score;
-  };
+  }
+
+  const userScore = calculate();
 
   return (
     <>
@@ -45,7 +48,7 @@ const Results = () => {
       {loading && <div> Loading...</div>}
       {answers && answers.length > 0 && (
         <>
-          <Summary score={calculate} noq={answers.length} />
+          <Summary score={userScore} noq={answers.length} />
           <Analysis answers={answers} />
         </>
       )}
