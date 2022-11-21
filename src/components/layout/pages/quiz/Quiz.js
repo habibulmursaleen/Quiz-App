@@ -1,7 +1,7 @@
 import { getDatabase, ref, set } from "firebase/database";
 import _ from "lodash";
 import React, { useEffect, useReducer, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../../context/AuthContext";
 import UseQuestionsList from "../../../../hooks/useQuestionsList";
 import Answers from "./Answers";
@@ -52,6 +52,11 @@ const Quiz = () => {
   const [qna, dispatch] = useReducer(reducer, initialState);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation(); //getting qna from react router dom location
+  console.log(location);
+  const videoTitle = location?.state?.videoTitle;
+  // console.log(videoTitle);
+
   //to do it once only
   //questions will not change after loading from firebase
   //after loading useEffect will call dispatch
@@ -127,7 +132,7 @@ const Quiz = () => {
             progress={percentage}
             submit={submitQuiz}
           />
-          <MiniPlayer />
+          <MiniPlayer videoId={id} title={videoTitle} />
         </>
       )}
     </>

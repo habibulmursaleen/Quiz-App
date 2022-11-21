@@ -10,7 +10,7 @@ const Results = () => {
   const location = useLocation(); //getting qna from react router dom location
   const qna = location?.state?.qna;
   const { loading, error, answers } = useAnswers(id);
-
+  console.log(location);
   //"qna" has only checked items, answers has the correct ones. now we need to check
   function calculate() {
     let score = 0;
@@ -36,7 +36,6 @@ const Results = () => {
         score = score + 5;
       }
     });
-    console.log(score);
     return score;
   }
 
